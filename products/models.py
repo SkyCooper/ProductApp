@@ -7,18 +7,18 @@ class Product(models.Model):
     amount = models.PositiveIntegerField()
     vote = models.PositiveIntegerField(blank=True, null=True)
     rating = models.PositiveIntegerField(blank=True, null=True)
-    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="products")
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="products", blank=True, null=True)
     created_date = models.DateField(auto_now_add=True)
     updated_date =models.DateField(auto_now=True)
     image = models.ImageField(upload_to="products",blank=True, null=True)
     
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.seller}"
 
-class Favorites(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name="favorites", on_delete=models.CASCADE)
+# class Favorites(models.Model):
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     user = models.ForeignKey(User, related_name="favorites", on_delete=models.CASCADE)
 
-class Card(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name="card", on_delete=models.CASCADE)
+# class Card(models.Model):
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     user = models.ForeignKey(User, related_name="card", on_delete=models.CASCADE)

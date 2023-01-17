@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .serializers import ProductSerializer, FavoritesSerializer, CardSerializer
-from .models import Product, Favorites, Card
+from .serializers import ProductSerializer
+from .models import Product
 from rest_framework import viewsets 
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -29,11 +29,11 @@ class ProductMVS(viewsets.ModelViewSet):
         return product
     
     
-class FavoritesMVS(viewsets.ModelViewSet):
-    queryset = Favorites.objects.all()
-    serializer_class = FavoritesSerializer
+# class FavoritesMVS(viewsets.ModelViewSet):
+#     queryset = Favorites.objects.all()
+#     serializer_class = FavoritesSerializer
     
     
-class CardMVS(viewsets.ModelViewSet):
-    queryset = Card.objects.all()
-    serializer_class = CardSerializer
+# class CardMVS(viewsets.ModelViewSet):
+#     queryset = Card.objects.all()
+#     serializer_class = CardSerializer

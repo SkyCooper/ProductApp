@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ProductMVS, FavoritesMVS, CardMVS
+from .views import ProductMVS
 from rest_framework import routers
 
 router = routers.DefaultRouter()

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from products.models import Product, Favorites, Card
+from products.models import Product
 
 ROLE = (
   (1, "SELLER"),
@@ -9,9 +9,9 @@ ROLE = (
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.PositiveIntegerField(choices=ROLE, blank=True, null=True)
-    favorites = models.ForeignKey(Favorites, on_delete=models.CASCADE, blank=True, null=True)
-    cards = models.ForeignKey(Card, on_delete=models.CASCADE, blank=True, null=True)
-    sell_product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
+    favorites = models.ManyToManyField(Product, blank=True, null=True, related_name="favorites")
+    cards = models.ManyToManyField(Product, blank=True, null=True, related_name="cards")
+    # sell_product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
     display_name = models.CharField(max_length=30, blank=True, null=True)
     avatar = models.ImageField(upload_to="users", default="users/avatar.png")
     bio = models.TextField(blank=True, null=True)

@@ -4,6 +4,7 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 from dj_rest_auth.serializers import TokenSerializer
 from .models import Profile
+from products.serializers import ProductSerializer
 
 class RegisterUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
@@ -53,9 +54,11 @@ class CustomTokenSerializer(TokenSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
     user_id = serializers.IntegerField(required=False)
+    favorites = ProductSerializer(many=True, read_only=True)
+    cards = ProductSerializer(many=True, read_only=True)
     class Meta:
         model = Profile
-        fields = ("id", "user", "user_id", "display_name", "avatar", "bio", "favorites", "cards", "sell_product")
+        fields = ("id", "user", "user_id", "avatar", "bio", "favorites", "cards")
         
 #! buradaki ProfileSerializer'ın kullanıldığı view (ProfileUpdateView)
 #! RetrieveUpdateAPIView'dan inherit edildiği için create metodu değil update metodu override edilmeli,        
