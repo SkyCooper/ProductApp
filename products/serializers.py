@@ -2,9 +2,11 @@ from rest_framework import serializers
 from .models import Product, Favorites, Card
 
 class ProductSerializer(serializers.ModelSerializer):
+    seller = serializers.StringRelatedField()
+    seller_id = serializers.IntegerField(required=False)
     class Meta:
         model = Product
-        fields = ['name', 'brand', 'amount', 'vote', 'rating', 'seller', 'created_date', 'updated_date']
+        fields = ['name', 'brand', 'amount', 'vote', 'rating', 'seller', 'seller_id', 'created_date', 'updated_date']
 
 class FavoritesSerializer(serializers.ModelSerializer):
     class Meta:
