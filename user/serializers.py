@@ -5,6 +5,7 @@ from django.contrib.auth.password_validation import validate_password
 from dj_rest_auth.serializers import TokenSerializer
 from .models import Profile
 from products.serializers import ProductSerializer
+from products.models import Product
 
 class RegisterUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
@@ -56,6 +57,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField(required=False)
     favorites = ProductSerializer(many=True, read_only=True)
     cards = ProductSerializer(many=True, read_only=True)
+    sold_products = serializers.SerializerMethodField()
     class Meta:
         model = Profile
         fields = ("id", "user", "user_id", "avatar", "bio", "favorites", "cards")
@@ -67,3 +69,8 @@ class ProfileSerializer(serializers.ModelSerializer):
         instance.user_id = self.context['request'].user.id
         instance.save()
         return instance
+    
+    def get_sold_products(self, instance):
+        products = Product.objects.all()
+        product = products.filter(seller_id=instance.user_id)
+        return ProductSerializer(product, many=True).data
