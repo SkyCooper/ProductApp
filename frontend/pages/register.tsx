@@ -11,12 +11,12 @@ import { RegisterType } from "../types";
 type Props = {};
 
 const register = (props: Props) => {
-  const { registerFunc } = useAuth();
+  const { registerFunc, errorsMessage } = useAuth();
+  console.log(errorsMessage);
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<RegisterType>();
 
@@ -39,13 +39,17 @@ const register = (props: Props) => {
             placeholder="Username"
             {...register("username", { required: true })}
           />
-          {errors.username && <span>This field is required</span>}
+          {errorsMessage?.username?.map((item, index) => (
+            <p key={index}>{item}</p>
+          ))}
           <input
             type="email"
             placeholder="Email"
             {...register("email", { required: true })}
           />
-          {errors.email && <span>This field is required</span>}
+          {errorsMessage?.email?.map((item, index) => (
+            <p key={index}>{item}</p>
+          ))}
           <input
             type="text"
             placeholder="First Name"
@@ -61,13 +65,17 @@ const register = (props: Props) => {
             placeholder="Password"
             {...register("password", { required: true })}
           />
-          {errors.password && <span>This field is required</span>}
+          {errorsMessage?.password?.map((item, index) => (
+            <p key={index}>{item}</p>
+          ))}
           <input
             type="text"
             placeholder="Password Again"
             {...register("password2", { required: true })}
           />
-          {errors.password2 && <span>This field is required</span>}
+          {errorsMessage?.password2?.map((item, index) => (
+            <p key={index}>{item}</p>
+          ))}
           <button type="submit">Register</button>
         </form>
       </div>
