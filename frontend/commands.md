@@ -8,4 +8,5 @@ yarn add react-hook-form
 
 # çalıştırmak için;
 
+cd frontend ile konumu düzenle;
 yarn dev

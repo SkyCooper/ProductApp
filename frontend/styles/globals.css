@@ -1,3 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-l from-indigo-200 via-red-200 to-yellow-100 font-Unbounded;
+  }
+}
+
+@layer components {
+  .registerInput {
+    @apply px-6 py-3 rounded-md bg-slate-300/70 text-[#bcc] font-semibold focus:outline-none focus:bg-slate-400 transition-all duration-300 focus:text-[#111] placeholder:text-orange-400 border-b-4 border-slate-400;
+  }
+
+  .inputDiv {
+    @apply relative;
+  }
+
+  .errorMessage {
+    @apply absolute text-xs text-red-400 animate-pulse top-[50px];
+  }
+
+  .submitButton {
+    @apply rounded-md px-5 py-2.5 bg-orange-500 hover:bg-orange-300;
+  }
+}
