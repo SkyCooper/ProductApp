@@ -21,6 +21,7 @@ export type LoginType = {
   username: string;
   password: string;
 };
+
 export type ProductType = {
   name: string;
   amount: number;
@@ -31,4 +32,15 @@ export type ProductType = {
   seller: string | null;
   seller_id: number;
   vote: number | null;
+};
+
+export type SellerProfileType = {
+  id: number;
+  user: string;
+  user_id: number;
+  bio: string;
+  avatar: string;
+  favorites?: [];
+  cards?: [];
+  sell_products?: [];
 };

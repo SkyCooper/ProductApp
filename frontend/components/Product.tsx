@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import React from "react";
-import useFetchData from "../hooks/useFetchData";
 import { ProductType } from "../types";
 
 type Props = {
@@ -9,7 +8,6 @@ type Props = {
 
 const Product = ({ item }: Props) => {
   const router = useRouter();
-  const { fetchDataById } = useFetchData();
 
   const handleClick = () => {
     router.push({

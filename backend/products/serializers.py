@@ -6,7 +6,7 @@ class ProductSerializer(serializers.ModelSerializer):
     seller_id = serializers.IntegerField(required=False)
     class Meta:
         model = Product
-        fields = ['name', 'brand', 'amount', 'vote', 'rating', 'seller', 'seller_id', 'created_date', 'updated_date']
+        fields = ['id','name', 'brand', 'amount', 'vote', 'rating', 'seller', 'seller_id', 'created_date', 'updated_date']
 
 # class FavoritesSerializer(serializers.ModelSerializer):
 #     class Meta:

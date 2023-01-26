@@ -60,7 +60,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     sold_products = serializers.SerializerMethodField()
     class Meta:
         model = Profile
-        fields = ("id", "user", "user_id", "avatar", "bio", "favorites", "cards")
+        fields = ("id", "user", "user_id", "avatar", "bio", "favorites", "cards", "sold_products")
         
 #! buradaki ProfileSerializer'ın kullanıldığı view (ProfileUpdateView)
 #! RetrieveUpdateAPIView'dan inherit edildiği için create metodu değil update metodu override edilmeli,        
